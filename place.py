@@ -1,8 +1,8 @@
+
 class Place():
-    def __init__(self, given_name, given_size, locked=False):
+    def __init__(self, given_name, locked=True):
         # locked=False means that the locked parameter will be False by default if not provided.
         self.name = given_name
-        self.size = given_size
         self.locked = locked
         self.next_places = []
         self.items = []
@@ -21,4 +21,8 @@ class Place():
             # remember that next_places is a list of Place instances hence why we can use place.name
             print(place.name)
 
-    # add more methods as needed
+def placeselectionchooser(selectionchoice):
+    if selectionchoice == "Home" or "home":
+        CurrentPlace = "Home"
+
+nextplaces = []

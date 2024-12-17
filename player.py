@@ -2,13 +2,16 @@ class Player():
     def __init__(self, given_name):
         self.name = given_name
         self.health = 100
-        self.energy = 100
         self.inventory_max_weight = 50
         self.inventory = []
         # add more atributes as needed
 
     def calculate_inventory_size(self):
-        # write code here
+        total = 0
+        for i in self.inventory:
+            total = total + i.weight
+        self.weight = i.weight
+        
         pass
 
     def add_item(self, item_instance):
@@ -19,9 +22,9 @@ class Player():
 
     def use_item(self, item_instance):
         if item_instance.type == "food":
-            self.energy += 50
-        elif item_instance.type == "medicine":
-            self.health += 50
+            self.health += item_instance.healamount
+        elif item_instance.type == "potion":
+            self.health += item_instance.healamount
         # add more code here
 
     # add more methods as needed

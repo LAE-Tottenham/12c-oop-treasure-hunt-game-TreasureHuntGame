@@ -1,6 +1,6 @@
 class locationsaver():
-    def __init__(self, location):
-        self.location = location
+    def __init__(self):
+        self.location = "Home"
 
     # def change_location(self, changer):
     #     self.location = changer

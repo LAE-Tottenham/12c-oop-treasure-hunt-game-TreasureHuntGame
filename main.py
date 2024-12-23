@@ -7,6 +7,7 @@ from termcolor import cprint
 def setup():
     # here you will setup your Game
     # places
+    locationsaverentity = locationsaver()
     homenonhostile = Place("Home", False)
     hayfields = Place("Hay Fields")
     village1 = Place("Village")
@@ -57,7 +58,7 @@ def setup():
         # home will be our starting place
     current_place = homenonhostile.name
     nextplaces.append(homenonhostile.name)
-    return current_place
+    return current_place, locationsaverentity
     
         
         # finish the setup function...
@@ -74,11 +75,8 @@ def start():
     print("You find yourself at your own home, finally able to leave the comfort of your own home.")
     name = input("Enter player name: ")
     player = Player(name)
-    print("You are currently in " + CurrentPlace)
+    cprint("You are currently in " + CurrentPlace,"yellow")
     return player
-
-    
-
         
 def noncombatopt():
     opt = input("""
@@ -91,7 +89,7 @@ What would you like to do?
         print("Here are the following places you can currently travel to:")
         print(nextplaces)
         placeselection = input("Which place would you like to go to? ")
-        locationsaver.placeselectionchooser(placeselection)
+        locationsaverentity.placeselectionchooser(placeselection)
         pass
     elif opt == "2":
         player.printinventory()
@@ -103,6 +101,6 @@ What would you like to do?
         pass
 
 
-CurrentPlace = setup()
+CurrentPlace, locationsaverentity = setup()
 player = start()
 noncombatopt()

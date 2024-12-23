@@ -1,4 +1,4 @@
-from place import Place, nextplaces
+from place import Place
 from Locationsaver import locationsaver
 from player import Player
 from item import Weapon, Food, Armour, Potion, SpecialItem
@@ -54,11 +54,18 @@ def setup():
 
     homenonhostile.add_item(Apple)
     homenonhostile.add_item(LeatherBoots)
+    hayfields.add_item(RogueSword)
+    hayfields.add_item(LeatherTrousers)
+    village1.add_item(RogueBow)
+    village1.add_item(LeatherChestplate)
+    Cave.add_item(LeatherHelmet)
+    Cave.add_item(HealingPotion1)
+
 
         # home will be our starting place
-    current_place = homenonhostile.name
-    nextplaces.append(homenonhostile.name)
-    return current_place, locationsaverentity
+    # current_place = homenonhostile.name
+    locationsaverentity.locationinitialisation(homenonhostile.name)
+    return locationsaverentity
     
         
         # finish the setup function...
@@ -75,32 +82,63 @@ def start():
     print("You find yourself at your own home, finally able to leave the comfort of your own home.")
     name = input("Enter player name: ")
     player = Player(name)
-    cprint("You are currently in " + CurrentPlace,"yellow")
+    cprint("You are currently at Home","yellow")
     return player
         
 def noncombatopt():
-    opt = input("""
+    while True:
+        opt = input("""
 What would you like to do?
 1. Go to a place 
 2. Check inventory
 3. Consume item
 """)
-    if opt == "1":
-        print("Here are the following places you can currently travel to:")
-        print(nextplaces)
-        placeselection = input("Which place would you like to go to? ")
-        locationsaverentity.placeselectionchooser(placeselection)
-        pass
-    elif opt == "2":
-        player.printinventory()
-    elif opt == "3":
-        print("Please select an item to consume.")
-        player.printinventory
-        itemuse = input()
-        player.use_item(itemuse)
-        pass
+        if opt == "1":
+            locationsaverentity.showlocation()
+            placeselection = input("Which place would you like to go to? ")
+            locationsaverentity.placeselectionchooser(placeselection)
+        elif opt == "2":
+            player.printinventory()
+        elif opt == "3":
+            print("Please select an item to consume.")
+            player.printinventory
+            itemuse = input()
+            player.use_item(itemuse)
+
+def villageropt1():
+    while True:
+        opt = input("""
+What would you like to do?
+1. Go to a place 
+2. Check inventory
+3. Consume item
+4. Talk to Bill the Villager
+5. Talk to Emily the Villager
+""")
+        if opt == "1":
+            pass
+        if opt == "2":
+            pass
+        if opt == "3":
+            pass
+        if opt == "4":
+            pass
+        if opt == "5":
+            pass
 
 
-CurrentPlace, locationsaverentity = setup()
+
+
+
+
+
+
+
+
+
+# RUN SETUP DO NOT TOUCH
+
+
+locationsaverentity = setup()
 player = start()
 noncombatopt()

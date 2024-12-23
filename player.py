@@ -23,16 +23,18 @@ class Player():
     def use_item(self, item_instance):
         itemuseselectionconfirmation = False
         while itemuseselectionconfirmation == False:
-            if item_instance.type == "food":
-                self.health += item_instance.healamount
-                self.inventory.remove(item_instance)
-                itemuseselectionconfirmation = True
-            elif item_instance.type == "potion":
-                self.health += item_instance.healamount
-                self.inventory.remove(item_instance)
-                itemuseselectionconfirmation = True
-            else:
-                print("The item you have entered does not exist. Please choose again")
-
+            if hasattr(item_instance, 'type') and hasattr(item_instance, 'healamount'):
+                if item_instance.type == "food":
+                    self.health += item_instance.healamount
+                    self.inventory.remove(item_instance)
+                    itemuseselectionconfirmation = True
+                elif item_instance.type == "potion":
+                    self.health += item_instance.healamount
+                    self.inventory.remove(item_instance)
+                    itemuseselectionconfirmation = True
+                else:
+                    print("The item you have entered does not exist. Please choose again")
+            print(f"The provided input '{item_instance}' is not a valid item.")
+            itemuseselectionconfirmation = True
     def printinventory(self):
         print(self.inventory)

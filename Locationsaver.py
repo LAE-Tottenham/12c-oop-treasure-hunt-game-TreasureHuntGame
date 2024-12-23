@@ -1,6 +1,7 @@
 class locationsaver():
     def __init__(self):
         self.location = "Home"
+        self.current_locations_unlocked = []
 
     # def change_location(self, changer):
     #     self.location = changer
@@ -16,3 +17,14 @@ class locationsaver():
             else:
                 print("You have typed an invalid location")
                 selectionchoice = input("Please enter a valid location you would like to travel to. ")
+
+    def locationinitialisation(self,location):
+        self.current_locations_unlocked.append(location)
+            
+    def location_unlocker(self, location):
+        self.current_locations_unlocked.append(location)
+        print("You have unlocked " + location)
+    
+    def showlocation(self):
+        print("The current locations you can travel to are:")
+        print(self.current_locations_unlocked)

@@ -21,10 +21,18 @@ class Player():
             print("Your inventory is full...")
 
     def use_item(self, item_instance):
-        if item_instance.type == "food":
-            self.health += item_instance.healamount
-        elif item_instance.type == "potion":
-            self.health += item_instance.healamount
-        # add more code here
+        itemuseselectionconfirmation = False
+        while itemuseselectionconfirmation == False:
+            if item_instance.type == "food":
+                self.health += item_instance.healamount
+                self.inventory.remove(item_instance)
+                itemuseselectionconfirmation = True
+            elif item_instance.type == "potion":
+                self.health += item_instance.healamount
+                self.inventory.remove(item_instance)
+                itemuseselectionconfirmation = True
+            else:
+                print("The item you have entered does not exist. Please choose again")
 
-    # add more methods as needed
+    def printinventory(self):
+        print(self.inventory)

@@ -1,4 +1,5 @@
-from place import Place, nextplaces, placeselectionchooser
+from place import Place, nextplaces
+from Locationsaver import locationsaver
 from player import Player
 from item import Weapon, Food, Armour, Potion, SpecialItem
 from termcolor import cprint
@@ -16,7 +17,7 @@ def setup():
     enemyvillage = Place("Enemy Village")
     homehostile = Place("Home that has been taken over")
         # etc. 
-        
+
         # items
 
         #swords
@@ -51,6 +52,7 @@ def setup():
     Keyboard = SpecialItem("Keyboard")
 
     homenonhostile.add_item(Apple)
+    homenonhostile.add_item(LeatherBoots)
 
         # home will be our starting place
     current_place = homenonhostile.name
@@ -67,36 +69,40 @@ def start():
         if checkerstart == "":
             havingstarted = True
         else:
-            pass
+            havingstarted = True
     cprint("Welcome to my game John Valley", "green")
     print("You find yourself at your own home, finally able to leave the comfort of your own home.")
     name = input("Enter player name: ")
     player = Player(name)
-
     print("You are currently in " + CurrentPlace)
+    return player
+
+    
+
         
 def noncombatopt():
     opt = input("""
 What would you like to do?
-1. Go to a place
-2. Pickup item
-3. Check inventory
-4. Consume item
+1. Go to a place 
+2. Check inventory
+3. Consume item
 """)
     if opt == "1":
         print("Here are the following places you can currently travel to:")
         print(nextplaces)
         placeselection = input("Which place would you like to go to? ")
-        placeselectionchooser(placeselection)
+        locationsaver.placeselectionchooser(placeselection)
         pass
     elif opt == "2":
-        # add code
-        pass
+        player.printinventory()
     elif opt == "3":
-        # add code
+        print("Please select an item to consume.")
+        player.printinventory
+        itemuse = input()
+        player.use_item(itemuse)
         pass
 
 
 CurrentPlace = setup()
-start()
+player = start()
 noncombatopt()

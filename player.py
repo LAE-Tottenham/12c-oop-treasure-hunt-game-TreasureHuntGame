@@ -36,5 +36,18 @@ class Player():
                     print("The item you have entered does not exist. Please choose again")
             print(f"The provided input '{item_instance}' is not a valid item.")
             itemuseselectionconfirmation = True
+
+
+    # def printinventory(self):
+    #     if not self.inventory:
+    #         print(self.inventory)
+    #         print("Debug")
+    #     else:
+    #         print("Your inventory is empty")
+
     def printinventory(self):
-        print(self.inventory)
+        if self.inventory:
+            print(self.inventory)
+        else:
+            print("Your inventory is empty")
+    

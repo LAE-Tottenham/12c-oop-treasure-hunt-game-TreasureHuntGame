@@ -84,7 +84,7 @@ def start():
     player = Player(name)
     cprint("You are currently at Home","yellow")
     return player
-        
+
 def noncombatopt():
     while True:
         opt = input("""
@@ -92,18 +92,25 @@ What would you like to do?
 1. Go to a place 
 2. Check inventory
 3. Consume item
+4. Exit menu
 """)
         if opt == "1":
             locationsaverentity.showlocation()
             placeselection = input("Which place would you like to go to? ")
             locationsaverentity.placeselectionchooser(placeselection)
         elif opt == "2":
+            print("This is the contents of your inventory: ")
             player.printinventory()
         elif opt == "3":
             print("Please select an item to consume.")
-            player.printinventory
+            player.printinventory()
             itemuse = input()
             player.use_item(itemuse)
+        elif opt == "4":
+            print("Exiting...")
+            break
+        else:
+            print("You have entered an invalid option")
 
 def villageropt1():
     while True:
@@ -117,17 +124,34 @@ What would you like to do?
 """)
         if opt == "1":
             pass
-        if opt == "2":
+        elif opt == "2":
             pass
-        if opt == "3":
+        elif opt == "3":
             pass
-        if opt == "4":
+        elif opt == "4":
             pass
-        if opt == "5":
+        elif opt == "5":
+            pass
+        else:
             pass
 
 
-
+def combatopt():
+    while True:
+        opt = input("""
+What would you like to do?
+1. Attack enemy
+2. Check inventory
+3. Consume item
+""")
+        if opt == "1":
+            pass
+        elif opt == "2":
+            pass
+        elif opt == "3":
+            pass
+        else:
+            pass
 
 
 

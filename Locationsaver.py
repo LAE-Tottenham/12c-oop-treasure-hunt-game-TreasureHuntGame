@@ -2,6 +2,7 @@ class locationsaver():
     def __init__(self):
         self.location = "Home"
         self.current_locations_unlocked = []
+        self.all_locations = []
 
     # def change_location(self, changer):
     #     self.location = changer
@@ -28,3 +29,6 @@ class locationsaver():
     def showlocation(self):
         print("The current locations you can travel to are:")
         print(self.current_locations_unlocked)
+
+    def all_location_append(self,location_instance):
+        self.all_locations.append()

@@ -1,3 +1,4 @@
+from typewriter import typewriter
 from place import Place
 from Locationsaver import locationsaver
 from player import Player
@@ -65,12 +66,14 @@ def setup():
         # home will be our starting place
     # current_place = homenonhostile.name
     locationsaverentity.locationinitialisation(homenonhostile.name)
-    return locationsaverentity
+    currentlocationmain = locationsaverentity.currentlocation
+    return locationsaverentity, currentlocationmain
     
         
         # finish the setup function...
 
 def start():
+    currentlocationmain = locationsaverentity.currentlocation
     havingstarted = False
     while havingstarted == False:
         checkerstart = input("Press Enter to begin")
@@ -83,6 +86,16 @@ def start():
     name = input("Enter player name: ")
     player = Player(name)
     cprint("You are currently at Home","yellow")
+    typewriter("Sunlight streams through the small window, painting the wooden floor in golden light. Birds chirp outside, and the sound of rustling leaves stirs you from sleep.")
+    typewriter("As your eyes open, you see your modest room: shelves with trinkets, a sturdy wardrobe, and herbs drying by the windowsill.")
+    typewriter("You stretch, shaking off the last traces of sleep. The woolen blanket tempts you to stay, but the thought of the bustling town pulls you from bed. Today isn’t a day to waste.")
+    typewriter("You swing your legs over the edge of the bed, your feet touching the cool wooden floor. After a quick splash of water from the basin. Your feet are cold. You see your boots in the corner of the room.")
+    cprint(" Enter in 4 to pick up the item.", "yellow")
+    cprint(" When done, enter in 5 to finish.")
+    noncombatopt()
+    typewriter("A growl from your stomach reminds you of the baker’s fresh bread waiting in the town square.")
+    # typewriter("")
+    # typewriter("")
     return player
 
 def noncombatopt():
@@ -92,7 +105,8 @@ What would you like to do?
 1. Go to a place 
 2. Check inventory
 3. Consume item
-4. Exit menu
+4. Pick up an item in your location.
+5. Exit menu
 """)
         if opt == "1":
             locationsaverentity.showlocation()
@@ -103,11 +117,20 @@ What would you like to do?
             player.printinventory()
         elif opt == "3":
             print("Please select an item to consume.")
+            print("If your inventory is empty, just press enter.")
             player.printinventory()
             itemuse = input()
             player.use_item(itemuse)
         elif opt == "4":
-            print("Exiting...")
+            print("Please select the item you want to pick up")
+            print(currentlocationmain)
+            itemselection = input(currentlocationmain.items + " ")
+            if itemselection in currentlocationmain.items:
+                print("You have picked up that item.")
+                locationsaverentity.currentlocation.items.remove()
+
+        elif opt == "5":
+            print("Exiting non-combat menu...")
             break
         else:
             print("You have entered an invalid option")
@@ -163,6 +186,6 @@ What would you like to do?
 # RUN SETUP DO NOT TOUCH
 
 
-locationsaverentity = setup()
+locationsaverentity, currentlocationmain = setup()
 player = start()
 noncombatopt()

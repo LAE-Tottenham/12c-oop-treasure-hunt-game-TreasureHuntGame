@@ -3,10 +3,13 @@ class locationsaver():
         self.location = "Home"
         self.current_locations_unlocked = []
         self.all_locations = []
+        self.currentlocation = ""
 
     # def change_location(self, changer):
     #     self.location = changer
     #     print("Your location is now" + changer)
+    def currentlocationlogger(self, location_instance):
+        self.currentlocation = location_instance
 
     def placeselectionchooser(self, selectionchoice):
         doneselection = False
@@ -21,6 +24,7 @@ class locationsaver():
 
     def locationinitialisation(self,location):
         self.current_locations_unlocked.append(location)
+        self.currentlocation = location
             
     def location_unlocker(self, location):
         self.current_locations_unlocked.append(location)
@@ -31,4 +35,4 @@ class locationsaver():
         print(self.current_locations_unlocked)
 
     def all_location_append(self,location_instance):
-        self.all_locations.append()
+        self.all_locations.append(location_instance)

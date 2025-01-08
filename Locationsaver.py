@@ -4,25 +4,23 @@ class locationsaver():
         self.current_locations_unlocked = []
         self.all_locations = []
         self.currentlocation = ""
-
-    # def change_location(self, changer):
-    #     self.location = changer
-    #     print("Your location is now" + changer)
+    
     def currentlocationlogger(self, location_instance):
         self.currentlocation = location_instance
 
     def placeselectionchooser(self, selectionchoice):
         doneselection = False
         while doneselection == False:
-            if selectionchoice == "Home":
-                self.location = "Home"
+            if selectionchoice in self.current_locations_unlocked:
+                self.location = selectionchoice
+                self.currentlocation = selectionchoice  # Update both
                 doneselection = True
-                print("Done")
+                print("You are now at " + selectionchoice)
             else:
-                print("You have typed an invalid location")
+                print("You have typed an invalid location.")
                 selectionchoice = input("Please enter a valid location you would like to travel to. ")
 
-    def locationinitialisation(self,location):
+    def locationinitialisation(self, location):
         self.current_locations_unlocked.append(location)
         self.currentlocation = location
             
@@ -34,5 +32,5 @@ class locationsaver():
         print("The current locations you can travel to are:")
         print(self.current_locations_unlocked)
 
-    def all_location_append(self,location_instance):
+    def all_location_append(self, location_instance):
         self.all_locations.append(location_instance)

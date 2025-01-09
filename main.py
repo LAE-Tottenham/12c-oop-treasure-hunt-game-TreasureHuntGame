@@ -1,6 +1,6 @@
 from typewriter import typewriter
 from place import Place
-from Locationsaver import locationsaver
+from Locationsaver import locationsaver 
 from player import Player
 from item import Weapon, Food, Armour, Potion, SpecialItem
 from termcolor import cprint
@@ -73,7 +73,7 @@ def setup():
     # return locationsaverentity, currentlocationmain
     locationsaverentity.locationinitialisation(homenonhostile.name)
     currentlocationmain = homenonhostile  # Initialize the current location to home
-    return locationsaverentity, currentlocationmain
+    return locationsaverentity, currentlocationmain, hayfields, village1, Cave, Beach, Village2,volcano, enemyvillage, homehostile 
     
         
         # finish the setup function...
@@ -102,9 +102,13 @@ def start():
     cprint(" Note that you will not be able to pick up the item unless you come back here in the future.", "red")
     noncombatopt(player)  # Pass the player object here
     typewriter("A growl from your stomach reminds you of the baker’s fresh bread waiting in the town square.")
-    cprint(" Pick up the apple now. If you have already picked it up, then exit the menu.", "ywll")
-    
-
+    cprint(" Pick up the apple now. If you have already picked it up, then exit the menu.", "yellow")
+    cprint(" Note that you will not be able to pick up the item unless you come back here in the future.", "red")
+    noncombatopt(player)
+    typewriter("You now walk down the stairs and outside the House, heading towards the hayfields that lie outside your home.")
+    cprint("You have now unlocked the location Hay Fields, and have completed the first tutorial.", "yellow")
+    locationsaverentity.locationinitialisation(hayfields)
+    print("DEBUG")
     return player
 
 
@@ -138,7 +142,7 @@ What would you like to do?
         #     if itemselection in currentlocationmain.items:
         #         print("You have picked up that item.")
         #         locationsaverentity.currentlocation.items.remove()
-        if opt == "4":
+        elif opt == "4":
             print("Available items in this location:")
             for item in currentlocationmain.items:
                 cprint(item.name,"light_yellow")  # Display item names properly
@@ -158,7 +162,7 @@ What would you like to do?
             print("Exiting non-combat menu...")
             break
         else:
-            print("You have entered an invalid option")
+            print("You have entered an invalid option DEBUG")
 
 def villageropt1():
     while True:
@@ -211,6 +215,6 @@ What would you like to do?
 # RUN SETUP DO NOT TOUCH
 
 
-locationsaverentity, currentlocationmain = setup()
+locationsaverentity, currentlocationmain, hayfields, village1, Cave, Beach, Village2,volcano, enemyvillage, homehostile = setup()
 player = start()
-
+noncombatopt(player)

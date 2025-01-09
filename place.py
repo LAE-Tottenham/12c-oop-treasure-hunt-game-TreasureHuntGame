@@ -6,7 +6,7 @@ class Place():
         self.locked = locked
         self.next_places = []
         self.items = []
-        # add more atributes as needed
+        # add more attributes as needed
 
     def add_next_place(self, place_instance):
         self.next_places.append(place_instance)

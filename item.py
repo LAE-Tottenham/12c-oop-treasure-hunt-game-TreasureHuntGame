@@ -1,4 +1,5 @@
-class Item():
-    def __init__(self, name):
+class Item:
+    def __init__(self, name, weight):
         self.name = name
-        pass
+        self.weight = weight
+

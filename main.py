@@ -107,7 +107,7 @@ def start():
     noncombatopt(player)
     typewriter("You now walk down the stairs and outside the House, heading towards the hayfields that lie outside your home.")
     cprint("You have now unlocked the location Hay Fields, and have completed the first tutorial.", "yellow")
-    locationsaverentity.locationinitialisation(hayfields)
+    currentlocationmain = locationsaverentity.location_unlocker(hayfields, currentlocationmain)
     print("DEBUG")
     return player
 

@@ -24,9 +24,11 @@ class locationsaver():
         self.current_locations_unlocked.append(location)
         self.currentlocation = location
             
-    def location_unlocker(self, location):
+    def location_unlocker(self, location, currentlocation):
         self.current_locations_unlocked.append(location.name)
+        currentlocation = location
         print("You have unlocked " + location.name)
+        return currentlocation
     
     def showlocation(self):
         print("The current locations you can travel to are:")

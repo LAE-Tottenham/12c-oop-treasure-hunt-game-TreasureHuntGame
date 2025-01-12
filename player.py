@@ -8,7 +8,7 @@ class Player:
         self.rucksack = []
         self.current_place = None
         self.health = 100
-        self.max_items = 5  # Default max items
+        self.max_items = 5  
         self.has_statue_of_immortality = False
         self.instant_kill = False
         self.undetectable_timer = 0
@@ -19,21 +19,21 @@ class Player:
         self.current_place = place
         print(f"You have moved to {self.current_place.name}")
 
-        # Toxic Town health depletion logic
+        
         if self.current_place.name == "Toxic Town" and not any(item.name == "Gas Mask" for item in self.rucksack):
             print("You have entered Toxic Town without a Gas Mask! The toxic gas is draining your health.")
             for seconds in range(10, 0, -1):
                 if self.health <= 0:
                     print("You have succumbed to the toxic gas. Game over!")
-                    exit()  # Ends the game
+                    exit()  
                 print(f"Health: {self.health} | Time left: {seconds} seconds")
-                self.health -= 10  # Lose 10 health every second
-                time.sleep(1)  # Simulate real-time health depletion
+                self.health -= 10 
+                time.sleep(1) 
             print("You have survived Toxic Town, but barely! Find a Gas Mask next time.")
         elif self.current_place.name == "Toxic Town":
             print("Your Gas Mask protects you from the toxic gas. You can safely explore Toxic Town.")
 
-        # Handle instant kill or undetectable timer mechanics
+        
         if self.instant_kill:
             self.instant_kill_enemy()
             self.instant_kill = False
@@ -91,7 +91,7 @@ class Player:
                 print("You are now protected from toxic gas and can enter Toxic Town without losing health.")
             elif item.name == "Silent Step Shoes":
                 print("You used the Silent Step Shoes. You can now move around without being detected by enemies.")
-                self.undetectable_timer = 10  # Undetectable for 10 moves
+                self.undetectable_timer = 10  
             elif item.name == "Damage Potion":
                 print("You used the Damage Potion. The next enemy you encounter will take 50 damage.")
                 self.deal_damage_next_enemy()

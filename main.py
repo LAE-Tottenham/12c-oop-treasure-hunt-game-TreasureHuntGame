@@ -13,7 +13,6 @@ class Enemy:
         self.name = name
         self.strength = strength
 
-# Define places globally
 forest = Place("Forest", "A dark, dense forest with tall trees.")
 castle = Place("Castle", "A grand castle with towering walls.")
 secret_room = Place("Secret Room", "A hidden room within the castle with a riddle to solve.")
@@ -27,7 +26,7 @@ swamp = Place("Swamp", "A murky swamp with dense vegetation.")
 plains = Place("Plains", "Vast, open plains with tall grass.")
 toxic_town = Place("Toxic Town", "A town filled with toxic gas and higher-tier loot.")
 
-# Connect places
+
 secret_room.connect("west",castle)
 forest.connect("east", castle)
 castle.connect("south", forest)
@@ -48,7 +47,7 @@ plains.connect("west", river)
 desert.connect("north", toxic_town)
 toxic_town.connect("south", desert)
 
-# Create items
+
 key = Item("Key", 1)
 sword = Item("Sword", 5)
 blunt_dagger = Item("Blunt Dagger", 3)
@@ -70,7 +69,7 @@ map = Item("Map", 1)
 gas_mask = Item("Gas Mask", 2)
 golden_trophy = Item("Golden Trophy", 5)
 
-# Add items to places
+
 forest.add_item(key)
 castle.add_item(sword)
 village.add_item(shield)
@@ -91,28 +90,27 @@ secret_room.add_item(gas_mask)
 swamp.add_item(silent_step_shoes)
 toxic_town.add_item(golden_trophy)
 
-# Create people and enemies
+
 guard = Person("Guard", "You need a key to enter the secret room.")
 villager = Person("Villager", "Welcome to our village! We could use a hero like you.")
 monster = Enemy("Monster", 20)
 thief = Enemy("Thief", 15)
 dragon = Enemy("Dragon", 50)
 
-# Add people and enemies to places
+
 castle.add_person(guard)
 village.add_person(villager)
 cave.add_enemy(monster)
 desert.add_enemy(thief)
 mountain.add_enemy(dragon)
 
-# Get player information
+
 player_name = input("Enter your hero's name: ")
 
-# Initialize player and move to the starting location
+
 player = Player(player_name, secret_room, castle)
 player.move(forest)
 
-# Introduce the storyline
 print(f"\nWelcome, {player_name}!")
 print("You stand at the edge of the Mystic Forest, a place of legend filled with untold secrets and lurking dangers.")
 print("Your quest is to brave the wild, battle ferocious foes, and seize the Everlasting Treasure hidden deep within the Castle of Arkamor.")
@@ -135,7 +133,7 @@ def solve_riddle():
 def toxic_town_death_sequence():
     if any(item.name == "Gas Mask" for item in player.rucksack):
         print("Your Gas Mask protects you from the toxic gas. You can safely explore Toxic Town.")
-        return  # Exit the sequence if Gas Mask is present
+        return  
 
     print("The toxic gas starts affecting you...")
     for i in range(10, 0, -1):

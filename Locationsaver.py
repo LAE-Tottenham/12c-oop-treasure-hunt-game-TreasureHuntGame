@@ -1,3 +1,5 @@
+from place import Place
+
 class locationsaver():
     def __init__(self):
         self.location = "Home"
@@ -8,9 +10,9 @@ class locationsaver():
     def currentlocationlogger(self, location_instance):
         self.currentlocation = location_instance
 
-    def placeselectionchooser(self, selectionchoice):
+    def placeselectionchooser(self, selectionchoice, currentlocation):
         doneselection = False
-        while doneselection == False:
+        while not doneselection:
             if selectionchoice in self.current_locations_unlocked:
                 self.location = selectionchoice
                 self.currentlocation = selectionchoice  # Update both
@@ -19,16 +21,21 @@ class locationsaver():
             else:
                 print("You have typed an invalid location.")
                 selectionchoice = input("Please enter a valid location you would like to travel to. ")
-
+        return currentlocation  # Return currentlocation if needed
+    
     def locationinitialisation(self, location):
         self.current_locations_unlocked.append(location)
         self.currentlocation = location
             
     def location_unlocker(self, location, currentlocation):
+        if not isinstance(location, Place):  # Check if location is a Place object
+            raise TypeError(f"Expected a Place object, but got {type(location).__name__}.")
+        
         self.current_locations_unlocked.append(location.name)
         currentlocation = location
-        print("You have unlocked " + location.name)
+        print(f"You have unlocked {location.name}.")
         return currentlocation
+
     
     def showlocation(self):
         print("The current locations you can travel to are:")

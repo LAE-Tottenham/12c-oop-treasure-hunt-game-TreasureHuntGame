@@ -1,14 +1,13 @@
 # nextplaces = []
 # def adderlocation(location,nextplaces):
 #     pass
-class Place():
+class Place:
     def __init__(self, given_name, locked=True):
-        # locked=False means that the locked parameter will be False by default if not provided.
         self.name = given_name
         self.locked = locked
         self.items = []
-        self.storycompletion = False
-        # add more atributes as needed
+        self.storycompletion = False  # Track if the story for this place has been completed
+
 
     def add_item(self, item_instance):
         self.items.append(item_instance)

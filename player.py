@@ -4,6 +4,7 @@ class Player():
         self.health = 100
         self.inventory_max_weight = 50
         self.inventory = []
+        self.currency = 0
         # add more atributes as needed
 
     # def calculate_inventory_size(self):

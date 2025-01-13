@@ -10,18 +10,22 @@ class locationsaver():
     def currentlocationlogger(self, location_instance):
         self.currentlocation = location_instance
 
-    def placeselectionchooser(self, selectionchoice, currentlocation):
-        doneselection = False
-        while not doneselection:
-            if selectionchoice in self.current_locations_unlocked:
-                self.location = selectionchoice
-                self.currentlocation = selectionchoice  # Update both
-                doneselection = True
-                print("You are now at " + selectionchoice)
-            else:
-                print("You have typed an invalid location.")
-                selectionchoice = input("Please enter a valid location you would like to travel to. ")
-        return currentlocation  # Return currentlocation if needed
+    def placeselectionchooser(self, selectionchoice):
+        for location in self.all_locations:
+            if location.name.lower() == selectionchoice.lower():
+                if location.name in self.current_locations_unlocked:
+                    self.location = location.name
+                    self.currentlocation = location
+                    print(f"You have arrived at {location.name}.")
+                    if not location.storycompletion and hasattr(location, "story"):
+                        location.story()
+                        location.storycompletion = True
+                    return location
+                else:
+                    print(f"{location.name} is currently locked.")
+                    return self.currentlocation
+        print(f"Invalid selection: {selectionchoice}")
+        return self.currentlocation
     
     def locationinitialisation(self, location):
         self.current_locations_unlocked.append(location)

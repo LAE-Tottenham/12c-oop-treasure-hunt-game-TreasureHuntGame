@@ -2,7 +2,9 @@ class Item():
     def __init__(self, name, weight=0):
         self.name = name
         self.weight = weight  # Add weight attribute here
-        pass
+    
+    def __str__(self):
+        return self.name
 
 class Weapon(Item):
     def __init__(self, name, rangelb, rangeub, type, weight):
